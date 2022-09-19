@@ -8,67 +8,11 @@ static TService Get<TService>(IHost host)
 
 static async Task StartAnalysisAsync(ActionInputs inputs, IHost host)
 {
-    using ProjectWorkspace workspace = Get<ProjectWorkspace>(host);
-    using CancellationTokenSource tokenSource = new();
+    var updatedMetrics = "100%";
+    var title = "OData Inspector";
+    var summary = "The summary";
 
-    Console.CancelKeyPress += delegate
-    {
-        tokenSource.Cancel();
-    };
-
-    var projectAnalyzer = Get<ProjectMetricDataAnalyzer>(host);
-
-    Matcher matcher = new();
-    matcher.AddIncludePatterns(new[] { "**/*.csproj", "**/*.vbproj" });
-
-    Dictionary<string, CodeAnalysisMetricData> metricData = new(StringComparer.OrdinalIgnoreCase);
-    var projects = matcher.GetResultsInFullPath(inputs.Directory);
-
-    foreach (var project in projects)
-    {
-        var metrics =
-            await projectAnalyzer.AnalyzeAsync(
-                workspace, project, tokenSource.Token);
-
-        foreach (var (path, metric) in metrics)
-        {
-            metricData[path] = metric;
-        }
-    }
-
-    var updatedMetrics = false;
-    var title = "";
-    StringBuilder summary = new();
-    if (metricData is { Count: > 0 })
-    {
-        var fileName = "CODE_METRICS.md";
-        var fullPath = Path.Combine(inputs.Directory, fileName);
-        var logger = Get<ILoggerFactory>(host).CreateLogger(nameof(StartAnalysisAsync));
-        var fileExists = File.Exists(fullPath);
-
-        logger.LogInformation(
-            $"{(fileExists ? "Updating" : "Creating")} {fileName} markdown file with latest code metric data.");
-
-        summary.AppendLine(
-            title = $"{(fileExists ? "Updated" : "Created")} {fileName} file, analyzed metrics for {metricData.Count} projects.");
-
-        foreach (var (path, _) in metricData)
-        {
-            summary.AppendLine($"- *{path}*");
-        }
-
-        var contents = metricData.ToMarkDownBody(inputs);
-        await File.WriteAllTextAsync(
-            fullPath,
-            contents,
-            tokenSource.Token);
-
-        updatedMetrics = true;
-    }
-    else
-    {
-        summary.Append("No metrics were determined.");
-    }
+    await Task.Delay(1);
 
     // https://docs.github.com/actions/reference/workflow-commands-for-github-actions#setting-an-output-parameter
     Console.WriteLine($"::set-output name=updated-metrics::{updatedMetrics}");
@@ -83,7 +27,7 @@ parser.WithNotParsed(
     errors =>
     {
         Get<ILoggerFactory>(host)
-            .CreateLogger("DotNet.GitHubAction.Program")
+            .CreateLogger("OData.Inspector")
             .LogError(
                 string.Join(Environment.NewLine, errors.Select(error => error.ToString())));
         

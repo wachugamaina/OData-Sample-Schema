@@ -3,7 +3,7 @@ global using System.Text;
 global using System.Web;
 global using CommandLine;
 global using DotNet.CodeAnalysis;
-global using DotNet.GitHubAction;
+global using OData.Inspector;
 global using DotNet.GitHubAction.Analyzers;
 global using DotNet.GitHubAction.Extensions;
 global using Markdown;
