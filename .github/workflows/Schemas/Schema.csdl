@@ -166,8 +166,8 @@
        <EntityType Name="GovernmentOrder" baseType="SampleModel.Order" >
          <Property Name="Country" Type="SampleModel.String"  Nullable="false"/>
        </EntityType>
-  
- <!�- The Employee EntityType has Web Customizable Feed property mappings that are supported only in OData 2.0 and OData 3.0 -->
+
+        <!-- The Employee EntityType has Web Customizable Feed property mappings that are supported only in OData 2.0 and OData 3.0 -->
        <EntityType Name="Employee" m:FC_KeepInContent="true"
             m:FC_TargetPath="Location" m:FC_SourcePath="Address/City" 
             m:FC_NsUri="http://www.microsoft.com" m:FC_NsPrefix="emp">
