@@ -4,8 +4,6 @@ name: 'OData Inspector'
 on:
   push:
     branches: [ main ]
-    paths:
-    - 'Schemas/**'               # run on all changes to this dir
   workflow_dispatch:
     inputs:
       reason:
@@ -35,5 +33,5 @@ jobs:
       env:
         GREETINGS: 'Hello, .NET developers!' # ${{ secrets.GITHUB_TOKEN }}
       with:
-        owner: ${{ github.repository_owner }}
-        name: ${{ github.repository }}
+        branch: ${{ github.repository_owner }}
+        targetBranch: ${{ github.repository }}
