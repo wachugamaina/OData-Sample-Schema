@@ -1,0 +1,41 @@
+# The name of the work flow. Badges will use this name
+name: 'OData Inspector'
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+    - 'Schemas/**'               # run on all changes to this dir
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'The reason for running the workflow'
+        required: true
+        default: 'Manual run'
+
+jobs:
+  analysis:
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: 'Print manual run reason'
+      if: ${{ github.event_name == 'workflow_dispatch' }}
+      run: |
+        echo 'Reason: ${{ github.event.inputs.reason }}'
+
+    - name: OData Inspector
+      id: odata-inspector
+      uses: paulodero/OData-Inspector@main
+      env:
+        GREETINGS: 'Hello, .NET developers!' # ${{ secrets.GITHUB_TOKEN }}
+      with:
+        owner: ${{ github.repository_owner }}
+        name: ${{ github.repository }}
+        branch: ${{ github.ref }}
+        dir: ${{ './github-actions/DotNet.
