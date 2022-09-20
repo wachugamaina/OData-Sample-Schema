@@ -1,15 +1,10 @@
 # The name of the work flow. Badges will use this name
 name: 'OData Inspector'
 
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
-    inputs:
-      reason:
-        description: 'The reason for running the workflow'
-        required: true
-        default: 'Manual run'
+on: [pull_request,push]
+
+permissions:
+  contents: read
 
 jobs:
   analysis:
