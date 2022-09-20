@@ -5,8 +5,7 @@
  <edmx:DataServices m:DataServiceVersion="3.0">
     <Schema Namespace="SampleModel"
       xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
-       <EntityContainer Name="SampleEntities"
-                        m:IsDefaultEntityContainer="true">
+       <EntityContainer Name="SampleEntities" m:IsDefaultEntityContainer="true">
          <EntitySet Name="Customers" EntityType="SampleModel.Customer" />
          <EntitySet Name="Orders" EntityType="SampleModel.Order" />
          <EntitySet Name="OrderLines" EntityType="SampleModel.OrderLine" />
@@ -168,7 +167,7 @@
          <Property Name="Country" Type="SampleModel.String"  Nullable="false"/>
        </EntityType>
   
- <!—- The Employee EntityType has Web Customizable Feed property mappings that are supported only in OData 2.0 and OData 3.0 -->
+ <!ï¿½- The Employee EntityType has Web Customizable Feed property mappings that are supported only in OData 2.0 and OData 3.0 -->
        <EntityType Name="Employee" m:FC_KeepInContent="true"
             m:FC_TargetPath="Location" m:FC_SourcePath="Address/City" 
             m:FC_NsUri="http://www.microsoft.com" m:FC_NsPrefix="emp">
