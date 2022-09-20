@@ -1,13 +1,5 @@
-﻿global using System.Globalization;
-global using System.Text;
-global using System.Web;
-global using CommandLine;
+﻿global using CommandLine;
 global using OData.Inspector;
-global using DotNet.GitHubAction.Analyzers;
-global using DotNet.GitHubAction.Extensions;
-global using Markdown;
-global using Microsoft.CodeAnalysis;
-global using Microsoft.CodeAnalysis.CodeMetrics;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Hosting;
 global using Microsoft.Extensions.Logging;

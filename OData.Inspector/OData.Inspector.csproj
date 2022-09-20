@@ -17,7 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DotNet.CodeAnalysis\OData.Schema.Validation.csproj" />
+    <Folder Include="Analyzers\" />
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OData.Validation\OData.Schema.Validation.csproj" />
   </ItemGroup>
 
 </Project>
