@@ -1,4 +1,4 @@
-# The name of the work flow. Badges will use this name
+# The name of the work flow. Badges will use this name.
 name: 'OData Inspector'
 
 on: [pull_request,push]
