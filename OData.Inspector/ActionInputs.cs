@@ -11,7 +11,7 @@ public class ActionInputs
         }
     }
 
-    [Option('s', "branch",
+    [Option('b', "branch",
         Required = true,
         HelpText = "The owner, for example: \"dotnet\". Assign from `github.repository_owner`.")]
     public string SourceBranch { get; set; } = null!;

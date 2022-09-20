@@ -7,8 +7,8 @@ RUN dotnet publish ./OData.Inspector/OData.Inspector.csproj -c Release -o out --
 
 # Label the container
 LABEL maintainer="Paul Odero <paulodero@gmail.com>"
-LABEL repository="https://github.com/dotnet/samples"
-LABEL homepage="https://github.com/dotnet/samples"
+LABEL repository="https://github.com/paulodero/OData-Inspector"
+LABEL homepage="https://github.com/paulodero/OData-Inspector"
 
 # Label as GitHub action
 LABEL com.github.actions.name=".NET schema inspector"
