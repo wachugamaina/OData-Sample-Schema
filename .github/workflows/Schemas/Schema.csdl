@@ -5,7 +5,10 @@
       <EnumType Name="PersonGender">
         <Member Name="Male" Value="0" />
         <Member Name="Female" Value="1" />
-        <Member Name="Unknown" Value="2" />
+      </EnumType>
+       <EnumType Name="TripType">
+        <Member Name="Business" Value="0" />
+        <Member Name="Leisure" Value="1" />
       </EnumType>
       <ComplexType Name="City">
         <Property Name="CountryRegion" Type="Edm.String" Nullable="false" />
