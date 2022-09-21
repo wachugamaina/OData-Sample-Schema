@@ -1,4 +1,6 @@
-﻿using IHost host = Host.CreateDefaultBuilder(args)
+﻿using OData.Schema.Validation.Utils;
+
+using IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((_, services) =>
     {
     })
@@ -13,6 +15,15 @@ static async Task StartAnalysisAsync(ActionInputs inputs, IHost host)
     var updatedMetrics = "100%";
     var title = "OData Inspector";
     var summary = "The summary";
+
+    string sourceBranch = "patch-1";
+    string destinationBranch = "patch-1";
+    string userName = "wachugamaina";
+    var sourceSchemas = await GitUtilities.GetSchemasFromBranch(userName, sourceBranch);
+    var destinationSchemas = await GitUtilities.GetSchemasFromBranch(userName, sourceBranch);
+
+    ParentValidator validator = new ParentValidator(sourceSchemas, destinationSchemas);
+    validator.RunValidateion();
 
     await Task.Delay(1);
 
